@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root to: 'products#index'
 
-  resources :products, only: [:index, :show] do
+  resources :products, only: [:index, :show] do  # these routes allow for /products/product_id/reviews
     resources :reviews, only: [:create]
   end
   resources :categories, only: [:show]
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:create, :show]
 
-  namespace :admin do
+  namespace :admin do # namespacing routes allow for /admmin/categories
     root to: 'dashboard#show'
     resources :products, except: [:edit, :update, :show]
     resources :categories
