@@ -48,3 +48,21 @@
   </article>
 
 </section>
+
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-1">
+      <%= form_for :review do |form| %>
+        <div class="form-group">
+          Leave a review
+          <%= form.text_area :description, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          Rating
+          <%= form.select :rating, ['1', '2', '3', '4', '5'], class: 'form-control' %>
+        </div>
+
+        <%= form.submit 'Create Product', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
