@@ -23,8 +23,12 @@ class OrdersController < ApplicationController
   private
 
   def empty_cart!
+    if (enhanced_cart.product.length == [])
+      notice: "Your cart is empty"
     # empty hash means no products in cart :)
+    else
     update_cart({})
+    end
   end
 
   def perform_stripe_charge
