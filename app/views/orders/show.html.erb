@@ -15,14 +15,14 @@
     <thead>
       <tr>
         <th colspan="2">Product</th>
-        <th>Unit Price</th>
+        <th>Price</th>
         <th>Quantity</th>
         <th>Price</th>
       </tr>
     </thead>
     <tbody>
       <% @order.line_items.each do |item| %>
-        <%= render 'item', item: item %>  <%# item: item - you are passing to the partial the variable item %>
+        <%= render 'item', item: item %>  <%# 'item: item' - you are passing to the partial the variable item %>
       <% end %>
       <tfoot>
         <tr>
