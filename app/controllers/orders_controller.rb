@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
     if order.valid?
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
-      UserMailer.order_confirmation(current_user.email, order).deliver_now
+      UserMailer.order_confirmation(order).deliver_now
     else
       redirect_to cart_path, flash: { error: order.errors.full_messages.first }
     end
@@ -23,12 +23,7 @@ class OrdersController < ApplicationController
   private
 
   def empty_cart!
-    if (enhanced_cart.product.length == [])
-      notice: "Your cart is empty"
-    # empty hash means no products in cart :)
-    else
     update_cart({})
-    end
   end
 
   def perform_stripe_charge

@@ -1,10 +1,9 @@
 class UserMailer < ApplicationMailer
   default from: "no-reply@jungle.com"
 
-  def order_confirmation(email, order)
-    @email = email
+  def order_confirmation(order)
     @order = order
-    mail(to: email, subject: "Order ##{@order.id} confirmed.")
+    mail(to: @order.email, subject: "Order ##{@order.id} confirmed.")
   end
 
 end
