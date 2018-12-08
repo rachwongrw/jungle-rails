@@ -4,11 +4,11 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 
 ## Final Project 
 
-!["Home page"]()
-!["Add product"]()
-!["Basic authentication for admin"]()
-!["Confirmation order page"]()
-!["Reviews"]()
+!["Home page"](https://github.com/rachwongrw/jungle-rails/blob/master/screenshots/homepage.png)
+!["Add product"](https://github.com/rachwongrw/jungle-rails/blob/master/screenshots/Add%20product.png)
+!["Basic authentication for admin"](https://github.com/rachwongrw/jungle-rails/blob/master/screenshots/Basic%20authentication%20for%20admin.png)
+!["Confirmation order page"](https://github.com/rachwongrw/jungle-rails/blob/master/screenshots/Confirmation%20order%20page.png)
+!["Reviews"](https://github.com/rachwongrw/jungle-rails/blob/master/screenshots/Reviews.png)
 
 ## Setup
 
