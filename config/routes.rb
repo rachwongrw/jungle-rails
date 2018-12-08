@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'products#index'
 
   resources :products, only: [:index, :show] do  # these routes allow for /products/product_id/reviews
-    resources :reviews, only: [:create]
+    resources :reviews, only: [:create, :destroy]
   end
   resources :categories, only: [:show]
   resources :register
