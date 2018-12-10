@@ -4,7 +4,7 @@ RSpec.describe Product, type: :model do
 
   describe "Validations" do
     before :each do
-      @category = Category.new(name: 'Books category')
+      @category = Category.new(name: 'Some category')
   
       @product = Product.new(
         name: 'Item',
