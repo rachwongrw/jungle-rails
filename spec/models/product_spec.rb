@@ -8,7 +8,7 @@ RSpec.describe Product, type: :model do
   
       @product = Product.new(
         name: 'Item',
-        price: 2,
+        price_cents: 200,
         quantity: 1,
         category: @category
       )
@@ -18,13 +18,24 @@ RSpec.describe Product, type: :model do
       expect(@product).to be_valid
     end
 
-    # it "is not valid without a name" do
-    #   product = Product.new(name: nil)
-    #   expect(product).not_to be_valid
-    # end
-    # it "is not valid without a price" do
-    # end
-    # it "is not valid without a quantity"
-    # it "is not valid without a category"
+    it "is not valid without a name" do
+      @product.name = nil
+      expect(@product).not_to be_valid
+    end
+    
+    it "is not valid without a price" do
+      @product.price_cents = nil
+      expect(@product).not_to be_valid
+    end
+
+    it "is not valid without a quantity" do
+      @product.quantity = nil
+      expect(@product).not_to be_valid
+    end
+
+    it "is not valid without a category" do
+      @product.category = nil
+      expect(@product).not_to be_valid
+    end
   end
 end
