@@ -12,14 +12,6 @@ class User < ActiveRecord::Base
 
   def self.authenticate_with_credentials(email, password)
     user = User.find_by_email(email.strip.downcase) # strip to remove whitespace, and downcase to renove any uppercase letters)
-    if user
-      if user.authenticate(password) # if the password is authenticated (with the email found earlier) return user
-        user
-      else
-        nil
-      end
-    else
-      nil
-    end
+    user && user.authenticate(password) ? user : nil # if the password is authenticated (with the email found earlier) return user
   end
 end
