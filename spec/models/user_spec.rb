@@ -21,7 +21,8 @@ RSpec.describe User, type: :model do
     end
 
     it "is not valid without a last name" do
-      expect(@user.last_name).not_to be_nil
+      @user.last_name = nil
+      expect(@user).not_to be_valid
     end
 
     it "is not valid without a unique email" do
@@ -29,45 +30,57 @@ RSpec.describe User, type: :model do
         first_name: 'Jane',
         last_name: 'Doe',
         email: 'jane@doe.me',
-        password: '1234',
-        password_confirmation: '1234'
+        password: '123456',
+        password_confirmation: '123456'
       )
 
       new_user2 = User.create(
         first_name: 'Jane',
         last_name: 'Doe',
         email: 'jane@doe.me',
-        password: '1234',
-        password_confirmation: '1234'
+        password: '123456',
+        password_confirmation: '123456'
       )
       expect(new_user2).not_to be_valid
     end
 
     it "is not valid without a password" do
-      expect(@user.password).not_to be_nil
+      @user.password = nil
+      expect(@user).not_to be_valid
     end
 
     it "is not valid without a matching password" do
       @user.password_confirmation = 'somethingelse'
-      expect(@user).not_to be_valid
+      expect(@user).not_to eq(@user.password)
     end
 
     it "is not valid if the password is less than the minimum length" do
       @user.password = 'as'
-      expect(@user.password.length).not_to be >= 6
+      expect(@user).not_to be_valid
     end
   end
 
   describe '.authenticate_with_credentials' do
-    it "should be an existing user" do
+    before :each do
+      @new_user3 = User.create(
+        first_name: 'James',
+        last_name: 'Doner',
+        email: 'james@doner',
+        password: '567890',
+        password_confirmation: '567890'
+      )
+    end
 
-      described_class.authenticate_with_credentials(email, password)
-      expect(login.errors).to be_empty
+    it "is not valid without an email" do
+      expect(User.authenticate_with_credentials(' ','567890')).to be_nil
+    end
 
+    it "it is not valid without a password" do
+      expect(User.authenticate_with_credentials('james@doner',' ')).to be_nil
+    end
 
-      described_class.authenticate_with_credentials(email, password)
-      expect(login.errors.first). to eq "must be an existing user"
-
+    it "it is not valid without a password and email" do
+      expect(User.authenticate_with_credentials('james@doner','567890')).to eq @new_user3
     end
   end
 end
